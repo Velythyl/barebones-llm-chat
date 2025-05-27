@@ -145,6 +145,8 @@ class ChatHistoryWithImages:
 
     def add(self, role: Union[CHAT_ROLE, str], message, image: Union[str, pathlib.Path, None]=None):
 
+        image_hash = None
+
         if image is not None:
             new_image_dict, image_hash = self._add_image(image)
             self = self.replace(images=new_image_dict)
