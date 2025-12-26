@@ -28,6 +28,8 @@ class DefaultQwenSettings:
 
 class Qwen2p5(_Bot):
     def __init__(self, model_string="Qwen/Qwen2.5-Coder-32B-Instruct-GPTQ-Int4", precision=torch.bfloat16):
+        #model_string = "Qwen/Qwen2.5-Coder-14B"
+
         super().__init__(model_string, precision)
 
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -65,7 +67,7 @@ class Qwen2p5(_Bot):
 
 
 
-        prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
         inputs = self.tokenizer([prompt], return_tensors="pt")
 
         #inputs = self.tokenizer(messages, return_tensors='pt', return_token_type_ids=False)
